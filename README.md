@@ -18,7 +18,7 @@ $ pip install deform_conv2d_onnx_exporter
 ```
 
 ## Usage
-
+add supported dynamic batch_size export
 ```python
 import torch.onnx
 from torchvision.ops.deform_conv import DeformConv2d
@@ -38,7 +38,8 @@ torch.onnx.export(model,
                   "output.onnx",
                   input_names=input_names,
                   output_names=output_names,
-                  opset_version=12)
+                  opset_version=12,
+                  dynamic_axes={'inpupt': {0: 'batch_size'}, 'output': {0: 'batch_size'}})
 ```
 
 Note that you have to set `opset_version` to `12` or later.
