@@ -39,7 +39,7 @@ def mul(g, lhs, rhs):
 
 def reshape(g, x, shape):
     if isinstance(shape, list):
-        shape = tensor(g, shape, dtype=torch.int64)
+        shape = tensor(g, [-1] + shape[1:], dtype=torch.int64)  # Use -1 for dynamic batch size
     return g.op("Reshape", x, shape)
 
 
